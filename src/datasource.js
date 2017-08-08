@@ -124,7 +124,37 @@ export class GoogleStackdriverDatasource {
   }
 
   metricFindQuery(query) {
-    return '';
+    var metricLabelQuery = query.match(/^metric_label_values\(([^,]+),([^,]+),(.*)\)/);
+    if (metricLabelQuery) {
+      let params = {
+        name: 'projects/' + metricLabelQuery[1],
+        filter: metricLabelQuery[3],
+      }
+      return gapi.client.monitoring.projects.metricDescriptors.list(params).then(response => {
+        response = JSON.parse(response.body);
+        let valuePicker = _.property(metricLabelQuery[2]);
+        this.q.when(response.metricDescriptors.map(d => {
+          return valuePicker(d);
+        }));
+      });
+    }
+
+    var resourceLabelQuery = query.match(/^resource_label_values\(([^,]+),([^,]+),(.*)\)/);
+    if (resourceLabelQuery) {
+      let params = {
+        name: 'projects/' + resourceLabelQuery[1],
+        filter: resourceLabelQuery[3],
+      }
+      return gapi.client.monitoring.projects.monitoredResourceDescriptors.list(params).then(response => {
+        response = JSON.parse(response.body);
+        let valuePicker = _.property(resourceLabelQuery[2]);
+        this.q.when(response.resourceDescriptors.map(d => {
+          return valuePicker(d);
+        }));
+      });
+    }
+
+    return $q.when([]);
   }
 
   getFilterKeys() {
