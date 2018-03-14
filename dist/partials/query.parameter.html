@@ -44,6 +44,22 @@
 
 	<div class="gf-form gf-form--grow">
 		<div class="gf-form-label gf-form-label--grow"></div>
+		<info-popover mode="right-absolute">
+			Aggregate over time to reduce time resolution:
+			<ul ng-non-bindable>
+				<li>REDUCE_NONE ALIGN_MEAN 600s - subsample data points by picking average every 10 minutes</li>
+				<li>REDUCE_NONE ALIGN_MAX 3600s - subsample data points by picking max every hour</li>
+			</ul>
+			Aggregate across multiple time series (you can additionally use Group By feature if needed):
+			<ul ng-non-bindable>
+				<li>REDUCE_PERCENTILE_95 ALIGN_INTERPOLATE 60s - return 95%ile across timeseries</li> 
+				<li>REDUCE_MEAN ALIGN_INTERPOLATE 60s - return average across timeseries</li>
+			</ul>
+			Turn counter into a rate:
+			<ul ng-non-bindable>
+				<li>REDUCE_NONE ALIGN_RATE 60s - calculate the change rate per second of the counter</li>
+			</ul>
+		</info-popover>
 	</div>
 </div>
 
