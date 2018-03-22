@@ -9,13 +9,13 @@ After get the client ID, set the ID to datasource config.
 
 At first time, you need to accept to open this popup window, and accept to use API.
 
-![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/dist/images/setup1.png)
+![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/src/images/setup1.png)
 
-![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/dist/images/setup2.png)
+![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/src/images/setup2.png)
 
 ### Query editor
 
-![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/dist/images/query_editor.png)
+![](https://raw.githubusercontent.com/mtanda/grafana-google-stackdriver-datasource/master/src/images/query_editor.png)
 
 Please fill parameter for [projects.timeSeries.list](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) method.
 
